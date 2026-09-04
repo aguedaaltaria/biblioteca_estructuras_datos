@@ -12,4 +12,8 @@ struct Nodo {
     struct Nodo *siguiente; // Aquí guardamos la dirección de memoria del próximo eslabón
 };
 
+// --- FUNCIONES DE LA LISTA ---
+// Solo ponemos la "firma" de la función para que el resto del programa sepa que existe
+struct Nodo* crear_nodo(int valor_inicial);
+
 #endif
