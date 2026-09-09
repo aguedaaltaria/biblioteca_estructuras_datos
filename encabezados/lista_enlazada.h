@@ -15,5 +15,6 @@ struct Nodo {
 // --- FUNCIONES DE LA LISTA ---
 // Solo ponemos la "firma" de la función para que el resto del programa sepa que existe
 struct Nodo* crear_nodo(int valor_inicial);
+struct Nodo* insertar_al_inicio(struct Nodo *cabeza_actual, int nuevo_valor);
 
 #endif

@@ -23,3 +23,22 @@ struct Nodo* crear_nodo(int valor_inicial) {
     // 4. Devolvemos el "papelito" con la dirección de la casa nueva
     return nuevo_nodo;
 }
+
+// Función para insertar un nodo nuevo al inicio de la lista
+// Recibe la cabeza actual (el inicio de la lista) y el nuevo valor a guardar
+struct Nodo* insertar_al_inicio(struct Nodo *cabeza_actual, int nuevo_valor) {
+    
+    // 1. Usamos nuestra propia fábrica para crear la casa nueva
+    struct Nodo *nuevo_nodo = crear_nodo(nuevo_valor);
+    
+    // Si la fábrica falló (no hay memoria), devolvemos la lista como estaba
+    if (nuevo_nodo == NULL) {
+        return cabeza_actual;
+    }
+
+    // 2. Conectamos: El "siguiente" del nuevo nodo será la antigua cabeza de la lista
+    nuevo_nodo->siguiente = cabeza_actual;
+
+    // 3. El nuevo nodo es ahora la nueva cabeza oficial de la lista
+    return nuevo_nodo;
+}
