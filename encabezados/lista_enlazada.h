@@ -16,5 +16,10 @@ struct Nodo {
 // Solo ponemos la "firma" de la función para que el resto del programa sepa que existe
 struct Nodo* crear_nodo(int valor_inicial);
 struct Nodo* insertar_al_inicio(struct Nodo *cabeza_actual, int nuevo_valor);
+void recorrer_lista(struct Nodo *cabeza);
+void liberar_lista(struct Nodo *cabeza);
+struct Nodo* insertar_al_final(struct Nodo *cabeza, int nuevo_valor);
+struct Nodo* buscar_nodo(struct Nodo *cabeza, int valor_buscado);
+struct Nodo* eliminar_nodo(struct Nodo *cabeza, int valor_a_eliminar);
 
 #endif

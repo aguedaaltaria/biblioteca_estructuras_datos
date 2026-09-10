@@ -147,52 +147,173 @@
 // }
 
 
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Construyendo una lista interactiva!\n\n");
+    
+//     struct Nodo *mi_lista = NULL;
+//     int cantidad_nodos; // Aquí guardaremos el tamaño que elijas
+//     int valor_ingresado; // Aquí guardaremos cada número que escribas
+
+//     // 1. Preguntamos el tamaño de la lista
+//     printf("¿Cuántos nodos quieres crear? ");
+//     // Le pasamos a scanf la dirección de memoria (&) de cantidad_nodos
+//     scanf("%d", &cantidad_nodos); 
+
+//     printf("\n¡Perfecto! Vamos a crear %d nodos.\n", cantidad_nodos);
+
+//     // 2. Bucle interactivo para pedir los valores uno por uno
+//     for (int i = 1; i <= cantidad_nodos; i++) {
+//         printf("Ingresa el número para el nodo %d: ", i);
+//         scanf("%d", &valor_ingresado);
+        
+//         // Insertamos el valor que acabas de escribir en la lista
+//         mi_lista = insertar_al_inicio(mi_lista, valor_ingresado); 
+//     }
+
+//     // 3. ¡EL VIAJE! Recorremos la lista
+//     printf("\n--- Resultados de tu lista ---\n");
+//     struct Nodo *actual = mi_lista; 
+//     while (actual != NULL) {
+//         printf("Visité el nodo con el dato: %d\n", actual->dato);
+//         actual = actual->siguiente; 
+//     }
+
+//     // 4. Limpieza masiva
+//     printf("\nIniciando limpieza de memoria...\n");
+//     actual = mi_lista; 
+//     struct Nodo *siguiente_temporal;
+
+//     while (actual != NULL) {
+//         siguiente_temporal = actual->siguiente; 
+//         free(actual); 
+//         actual = siguiente_temporal; 
+//     }
+//     printf("¡Memoria liberada con éxito!\n");
+
+//     return 0; 
+// }
+
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Construyendo una lista interactiva 100%% modular!\n\n");
+    
+//     struct Nodo *mi_lista = NULL;
+//     int cantidad_nodos;
+//     int valor_ingresado;
+
+//     printf("¿Cuántos nodos quieres crear? ");
+//     scanf("%d", &cantidad_nodos); 
+
+//     printf("\n¡Perfecto! Vamos a crear %d nodos.\n", cantidad_nodos);
+
+//     for (int i = 1; i <= cantidad_nodos; i++) {
+//         printf("Ingresa el número para el nodo %d: ", i);
+//         scanf("%d", &valor_ingresado);
+//         mi_lista = insertar_al_final(mi_lista, valor_ingresado); 
+//     }
+
+//     // Recorremos usando nuestra función modular
+//     recorrer_lista(mi_lista);
+
+//     // ¡Limpieza en una sola línea gracias a tu idea!
+//     printf("\nIniciando limpieza de memoria...\n");
+//     liberar_lista(mi_lista);
+//     printf("¡Memoria liberada con éxito!\n");
+
+//     return 0; 
+// }
+
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Probando el Buscador de Nodos!\n\n");
+    
+//     struct Nodo *mi_lista = NULL;
+
+//     // Insertamos algunos elementos con nuestra cola (FIFO)
+//     mi_lista = insertar_al_final(mi_lista, 10);
+//     mi_lista = insertar_al_final(mi_lista, 20);
+//     mi_lista = insertar_al_final(mi_lista, 30);
+
+//     recorrer_lista(mi_lista);
+
+//     // Búsqueda 1: Busquemos el número 20 (sí existe)
+//     int objetivo = 20;
+//     struct Nodo *resultado = buscar_nodo(mi_lista, objetivo);
+    
+//     if (resultado != NULL) {
+//         printf("\n¡Éxito! El número %d fue encontrado en la memoria.\n", objetivo);
+//     } else {
+//         printf("\nEl número %d no está en la lista.\n", objetivo);
+//     }
+
+//     // Búsqueda 2: Busquemos el número 99 (no existe)
+//     int objetivo_falso = 99;
+//     struct Nodo *resultado_falso = buscar_nodo(mi_lista, objetivo_falso);
+    
+//     if (resultado_falso != NULL) {
+//         printf("¡Éxito! El número %d fue encontrado en la memoria.\n", objetivo_falso);
+//     } else {
+//         printf("El número %d no está en la lista (como esperábamos).\n", objetivo_falso);
+//     }
+
+//     // Limpieza final
+//     liberar_lista(mi_lista);
+//     printf("\nMemoria liberada con éxito.\n");
+
+//     return 0; 
+// }
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../encabezados/lista_enlazada.h" 
 
 int main() {
-    printf("¡Construyendo una lista interactiva!\n\n");
+    printf("¡Prueba de fuego: Eliminando al frente, al medio y al final!\n\n");
     
     struct Nodo *mi_lista = NULL;
-    int cantidad_nodos; // Aquí guardaremos el tamaño que elijas
-    int valor_ingresado; // Aquí guardaremos cada número que escribas
 
-    // 1. Preguntamos el tamaño de la lista
-    printf("¿Cuántos nodos quieres crear? ");
-    // Le pasamos a scanf la dirección de memoria (&) de cantidad_nodos
-    scanf("%d", &cantidad_nodos); 
+    // 1. Creamos una lista de 5 elementos (10, 20, 30, 40, 50)
+    mi_lista = insertar_al_final(mi_lista, 10);
+    mi_lista = insertar_al_final(mi_lista, 20);
+    mi_lista = insertar_al_final(mi_lista, 30);
+    mi_lista = insertar_al_final(mi_lista, 40);
+    mi_lista = insertar_al_final(mi_lista, 50);
 
-    printf("\n¡Perfecto! Vamos a crear %d nodos.\n", cantidad_nodos);
+    printf("--- Lista Inicial (5 elementos) ---");
+    recorrer_lista(mi_lista);
 
-    // 2. Bucle interactivo para pedir los valores uno por uno
-    for (int i = 1; i <= cantidad_nodos; i++) {
-        printf("Ingresa el número para el nodo %d: ", i);
-        scanf("%d", &valor_ingresado);
-        
-        // Insertamos el valor que acabas de escribir en la lista
-        mi_lista = insertar_al_inicio(mi_lista, valor_ingresado); 
-    }
+    // 2. Eliminamos uno del FRENTE (el 10) -> Caso especial (cambia la cabeza)
+    printf("\n[Cirugía 1] Eliminando el nodo del frente (10)...\n");
+    mi_lista = eliminar_nodo(mi_lista, 10);
+    recorrer_lista(mi_lista);
 
-    // 3. ¡EL VIAJE! Recorremos la lista
-    printf("\n--- Resultados de tu lista ---\n");
-    struct Nodo *actual = mi_lista; 
-    while (actual != NULL) {
-        printf("Visité el nodo con el dato: %d\n", actual->dato);
-        actual = actual->siguiente; 
-    }
+    // 3. Eliminamos uno del MEDIO (el 30) -> Caso general
+    printf("\n[Cirugía 2] Eliminando el nodo del medio (30)...\n");
+    mi_lista = eliminar_nodo(mi_lista, 30);
+    recorrer_lista(mi_lista);
 
-    // 4. Limpieza masiva
-    printf("\nIniciando limpieza de memoria...\n");
-    actual = mi_lista; 
-    struct Nodo *siguiente_temporal;
+    // 4. Eliminamos uno del FINAL (el 50) -> Caso general (el último nodo)
+    printf("\n[Cirugía 3] Eliminando el nodo del final (50)...\n");
+    mi_lista = eliminar_nodo(mi_lista, 50);
+    recorrer_lista(mi_lista);
 
-    while (actual != NULL) {
-        siguiente_temporal = actual->siguiente; 
-        free(actual); 
-        actual = siguiente_temporal; 
-    }
-    printf("¡Memoria liberada con éxito!\n");
+    // Limpieza final de lo que quedó (20 y 40)
+    liberar_lista(mi_lista);
+    printf("\nMemoria liberada con éxito.\n");
 
     return 0; 
 }
