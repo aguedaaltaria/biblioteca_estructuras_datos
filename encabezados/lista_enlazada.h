@@ -21,5 +21,18 @@ void liberar_lista(struct Nodo *cabeza);
 struct Nodo* insertar_al_final(struct Nodo *cabeza, int nuevo_valor);
 struct Nodo* buscar_nodo(struct Nodo *cabeza, int valor_buscado);
 struct Nodo* eliminar_nodo(struct Nodo *cabeza, int valor_a_eliminar);
+int obtener_longitud(struct Nodo *cabeza);
+struct Nodo* invertir_lista(struct Nodo *cabeza);
+
+struct NodoDoble {
+    int dato;
+    struct NodoDoble *siguiente;
+    struct NodoDoble *anterior;
+};
+
+struct NodoDoble* crear_nodo_doble(int valor_inicial);
+struct NodoDoble* insertar_inicio_doble(struct NodoDoble *cabeza, int nuevo_valor);
+void recorrer_lista_doble(struct NodoDoble *cabeza);
+void liberar_lista_doble(struct NodoDoble *cabeza);
 
 #endif

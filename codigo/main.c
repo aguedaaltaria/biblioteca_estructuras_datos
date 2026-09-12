@@ -1,274 +1,276 @@
+/* ==========================================================================
+ * HISTORIAL EVOLUTIVO DE LA BIBLIOTECA DE ESTRUCTURAS DE DATOS
+ * Este archivo contiene todas las iteraciones de práctica comentadas, 
+ * culminando en la prueba final activa al final del archivo.
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * FASE 1: Estructura base y primer "Hola Mundo" (Día 1)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
-
-// // Mucho de este archivo sera hecho con la funcion de recordar y aprender
-
-// // La función principal donde arranca nuestro programa
+// 
 // int main() {
 //     printf("¡Hola! Este es el inicio de la biblioteca de estructuras de datos.\n");
-    
-//     // Retornar 0 significa que el programa terminó sin errores
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 2: Creación de un nodo estático local en el Stack (Día 1)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
-// // Incluimos nuestro propio archivo usando comillas dobles en lugar de <>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Hola! Este es el inicio de la biblioteca de estructuras de datos.\n");
-    
-//     // Vamos a crear nuestro primer nodo directamente en la memoria local (Stack)
 //     struct Nodo mi_primer_nodo;
-    
-//     // Le asignamos un valor
 //     mi_primer_nodo.dato = 42;
-//     // Como es el único nodo, no hay siguiente, así que apunta a la "nada" (NULL)
 //     mi_primer_nodo.siguiente = NULL; 
-
-//     // Imprimimos el valor para ver si funcionó
 //     printf("El dato de mi nodo es: %d\n", mi_primer_nodo.dato);
-    
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 3: Introducción a la memoria dinámica (Heap) y factory (Día 2)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
-// #include <stdlib.h> // Necesitamos esto aquí también por si acaso (buenas prácticas)
+// #include <stdlib.h>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Iniciando la fábrica dinámica de nodos!\n");
-    
-//     // En lugar de "struct Nodo mi_nodo;", ahora declaramos un PUNTERO (*).
-//     // Y en vez de asignarle valores a mano, llamamos a la función que creamos.
-//     // Le pasamos el número 500 como dato inicial.
 //     struct Nodo *nodo_dinamico = crear_nodo(500);
-    
-//     // Verificamos que la fábrica no nos haya devuelto NULL (un error)
+//     
 //     if (nodo_dinamico != NULL) {
-//         // Como 'nodo_dinamico' es un puntero (una dirección), ¡usamos la flecha!
 //         printf("Éxito: Se creó un nodo en la memoria dinámica con el dato: %d\n", nodo_dinamico->dato);
 //     } else {
 //         printf("Error: No se pudo crear el nodo.\n");
 //     }
-
+// 
 //     free(nodo_dinamico);
-
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 4: Conexión manual de nodos y primer recorrido con viajero (Día 3)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Construyendo nuestra primera cadena de nodos!\n\n");
-    
-//     // 1. Pedimos tres nodos a nuestra fábrica
+//     
 //     struct Nodo *nodo1 = crear_nodo(10);
 //     struct Nodo *nodo2 = crear_nodo(20);
 //     struct Nodo *nodo3 = crear_nodo(30);
-
-//     // 2. Construimos las carreteras (las conexiones)
-//     // El "siguiente" del nodo1 apuntará a la dirección del nodo2
+// 
 //     nodo1->siguiente = nodo2;
-//     // El "siguiente" del nodo2 apuntará a la dirección del nodo3
 //     nodo2->siguiente = nodo3;
-//     // El nodo3 ya apunta a NULL (la nada) porque así lo configuró la fábrica
-
-//     // 3. ¡EL VIAJE! Vamos a recorrer la lista
+// 
 //     printf("Recorriendo la lista:\n");
-    
-//     // Creamos un puntero "viajero" que empieza en la primera casa
 //     struct Nodo *actual = nodo1; 
-
-//     // Mientras el viajero no llegue a un callejón sin salida (NULL)...
 //     while (actual != NULL) {
 //         printf("Visité el nodo con el dato: %d\n", actual->dato);
-        
-//         // El viajero toma el taxi hacia la siguiente dirección
 //         actual = actual->siguiente; 
 //     }
-
-//     // 4. Limpieza sagrada (liberamos la memoria de cada casa)
+// 
 //     free(nodo1);
 //     free(nodo2);
 //     free(nodo3);
-
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 5: Inserción automatizada al inicio (LIFO) y bucle de limpieza (Día 4)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Construyendo una lista automatizada!\n\n");
-    
-//     // 1. Empezamos con una lista vacía (la cabeza apunta a la nada)
 //     struct Nodo *mi_lista = NULL;
-
-//     // 2. Usamos un bucle para insertar 5 nodos automáticamente
-//     // Como insertamos "al inicio", el último en entrar será el primero en la lista.
+// 
 //     for (int i = 1; i <= 5; i++) {
-//         // Multiplicamos por 10 solo para que los datos sean 10, 20, 30, 40, 50
 //         mi_lista = insertar_al_inicio(mi_lista, i * 10); 
 //     }
-
-//     // 3. ¡EL VIAJE! Recorremos la lista igual que antes
+// 
 //     printf("Recorriendo la lista:\n");
 //     struct Nodo *actual = mi_lista; 
 //     while (actual != NULL) {
 //         printf("Visité el nodo con el dato: %d\n", actual->dato);
 //         actual = actual->siguiente; 
 //     }
-
-//     // 4. Limpieza masiva (El equipo de demolición)
+// 
 //     printf("\nIniciando limpieza de memoria...\n");
-//     actual = mi_lista; // Volvemos a poner al viajero al inicio
+//     actual = mi_lista; 
 //     struct Nodo *siguiente_temporal;
-
+// 
 //     while (actual != NULL) {
-//         // GUARDAMOS la dirección de la siguiente casa antes de demoler la actual
 //         siguiente_temporal = actual->siguiente; 
-        
-//         // DEMOLEMOS la casa actual
 //         free(actual); 
-        
-//         // EL VIAJERO se mueve a la dirección que guardamos
 //         actual = siguiente_temporal; 
 //     }
 //     printf("¡Memoria liberada con éxito!\n");
-
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 6: Lista interactiva controlada por usuario mediante scanf (Día 4)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Construyendo una lista interactiva!\n\n");
-    
 //     struct Nodo *mi_lista = NULL;
-//     int cantidad_nodos; // Aquí guardaremos el tamaño que elijas
-//     int valor_ingresado; // Aquí guardaremos cada número que escribas
-
-//     // 1. Preguntamos el tamaño de la lista
+//     int cantidad_nodos;
+//     int valor_ingresado;
+// 
 //     printf("¿Cuántos nodos quieres crear? ");
-//     // Le pasamos a scanf la dirección de memoria (&) de cantidad_nodos
 //     scanf("%d", &cantidad_nodos); 
-
+// 
 //     printf("\n¡Perfecto! Vamos a crear %d nodos.\n", cantidad_nodos);
-
-//     // 2. Bucle interactivo para pedir los valores uno por uno
 //     for (int i = 1; i <= cantidad_nodos; i++) {
 //         printf("Ingresa el número para el nodo %d: ", i);
 //         scanf("%d", &valor_ingresado);
-        
-//         // Insertamos el valor que acabas de escribir en la lista
 //         mi_lista = insertar_al_inicio(mi_lista, valor_ingresado); 
 //     }
-
-//     // 3. ¡EL VIAJE! Recorremos la lista
+// 
 //     printf("\n--- Resultados de tu lista ---\n");
 //     struct Nodo *actual = mi_lista; 
 //     while (actual != NULL) {
 //         printf("Visité el nodo con el dato: %d\n", actual->dato);
 //         actual = actual->siguiente; 
 //     }
-
-//     // 4. Limpieza masiva
+// 
 //     printf("\nIniciando limpieza de memoria...\n");
 //     actual = mi_lista; 
 //     struct Nodo *siguiente_temporal;
-
 //     while (actual != NULL) {
 //         siguiente_temporal = actual->siguiente; 
 //         free(actual); 
 //         actual = siguiente_temporal; 
 //     }
 //     printf("¡Memoria liberada con éxito!\n");
-
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 7: Modularización con Colas (FIFO) y limpieza centralizada (Día 5)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Construyendo una lista interactiva 100%% modular!\n\n");
-    
 //     struct Nodo *mi_lista = NULL;
 //     int cantidad_nodos;
 //     int valor_ingresado;
-
+// 
 //     printf("¿Cuántos nodos quieres crear? ");
 //     scanf("%d", &cantidad_nodos); 
-
+// 
 //     printf("\n¡Perfecto! Vamos a crear %d nodos.\n", cantidad_nodos);
-
 //     for (int i = 1; i <= cantidad_nodos; i++) {
 //         printf("Ingresa el número para el nodo %d: ", i);
 //         scanf("%d", &valor_ingresado);
 //         mi_lista = insertar_al_final(mi_lista, valor_ingresado); 
 //     }
-
-//     // Recorremos usando nuestra función modular
+// 
 //     recorrer_lista(mi_lista);
-
-//     // ¡Limpieza en una sola línea gracias a tu idea!
+// 
 //     printf("\nIniciando limpieza de memoria...\n");
 //     liberar_lista(mi_lista);
 //     printf("¡Memoria liberada con éxito!\n");
-
 //     return 0; 
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 8: Implementación y prueba del Buscador de Nodos (Día 5)
+ * -------------------------------------------------------------------------- */
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../encabezados/lista_enlazada.h" 
-
+// 
 // int main() {
 //     printf("¡Probando el Buscador de Nodos!\n\n");
-    
 //     struct Nodo *mi_lista = NULL;
-
-//     // Insertamos algunos elementos con nuestra cola (FIFO)
+// 
 //     mi_lista = insertar_al_final(mi_lista, 10);
 //     mi_lista = insertar_al_final(mi_lista, 20);
 //     mi_lista = insertar_al_final(mi_lista, 30);
-
 //     recorrer_lista(mi_lista);
-
-//     // Búsqueda 1: Busquemos el número 20 (sí existe)
+// 
 //     int objetivo = 20;
 //     struct Nodo *resultado = buscar_nodo(mi_lista, objetivo);
-    
 //     if (resultado != NULL) {
 //         printf("\n¡Éxito! El número %d fue encontrado en la memoria.\n", objetivo);
 //     } else {
 //         printf("\nEl número %d no está en la lista.\n", objetivo);
 //     }
-
-//     // Búsqueda 2: Busquemos el número 99 (no existe)
+// 
 //     int objetivo_falso = 99;
 //     struct Nodo *resultado_falso = buscar_nodo(mi_lista, objetivo_falso);
-    
 //     if (resultado_falso != NULL) {
 //         printf("¡Éxito! El número %d fue encontrado en la memoria.\n", objetivo_falso);
 //     } else {
 //         printf("El número %d no está en la lista (como esperábamos).\n", objetivo_falso);
 //     }
+// 
+//     liberar_lista(mi_lista);
+//     printf("\nMemoria liberada con éxito.\n");
+//     return 0; 
+// }
 
-//     // Limpieza final
+
+/* --------------------------------------------------------------------------
+ * FASE 9 (ACTIVA): Prueba de fuego de cirugía de nodos - Frente, Medio y Final
+ * -------------------------------------------------------------------------- */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Prueba de fuego: Eliminando al frente, al medio y al final!\n\n");
+    
+//     struct Nodo *mi_lista = NULL;
+
+//     // 1. Creamos una lista de 5 elementos (10, 20, 30, 40, 50)
+//     mi_lista = insertar_al_final(mi_lista, 10);
+//     mi_lista = insertar_al_final(mi_lista, 20);
+//     mi_lista = insertar_al_final(mi_lista, 30);
+//     mi_lista = insertar_al_final(mi_lista, 40);
+//     mi_lista = insertar_al_final(mi_lista, 50);
+
+//     printf("--- Lista Inicial (5 elementos) ---");
+//     recorrer_lista(mi_lista);
+
+//     // 2. Eliminamos uno del FRENTE (el 10) -> Caso especial (cambia la cabeza)
+//     printf("\n[Cirugía 1] Eliminando el nodo del frente (10)...\n");
+//     mi_lista = eliminar_nodo(mi_lista, 10);
+//     recorrer_lista(mi_lista);
+
+//     // 3. Eliminamos uno del MEDIO (el 30) -> Caso general
+//     printf("\n[Cirugía 2] Eliminando el nodo del medio (30)...\n");
+//     mi_lista = eliminar_nodo(mi_lista, 30);
+//     recorrer_lista(mi_lista);
+
+//     // 4. Eliminamos uno del FINAL (el 50) -> Caso general (el último nodo)
+//     printf("\n[Cirugía 3] Eliminando el nodo del final (50)...\n");
+//     mi_lista = eliminar_nodo(mi_lista, 50);
+//     recorrer_lista(mi_lista);
+
+//     // Limpieza final de lo que quedó (20 y 40)
 //     liberar_lista(mi_lista);
 //     printf("\nMemoria liberada con éxito.\n");
 
@@ -276,44 +278,98 @@
 // }
 
 
+/* --------------------------------------------------------------------------
+ * FASE 10 (ACTIVA - DÍA 6): Contar elementos de la lista (obtener_longitud)
+ * -------------------------------------------------------------------------- */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
 
+// int main() {
+//     printf("¡Iniciando el Día 6: Contando elementos con la nueva función!\n\n");
+    
+//     struct Nodo *mi_lista = NULL;
+
+//     // 1. Verificamos la longitud de una lista completamente vacía
+//     printf("Longitud de la lista vacía: %d nodos.\n", obtener_longitud(mi_lista));
+
+//     // 2. Agregamos tres elementos usando nuestra cola (100, 200, 300)
+//     mi_lista = insertar_al_final(mi_lista, 100);
+//     mi_lista = insertar_al_final(mi_lista, 200);
+//     mi_lista = insertar_al_final(mi_lista, 300);
+
+//     // 3. Recorremos para visualizar
+//     recorrer_lista(mi_lista);
+
+//     // 4. Comprobamos la longitud con elementos
+//     printf("\nLongitud actual de la lista: %d nodos.\n", obtener_longitud(mi_lista));
+
+//     // Limpieza final de memoria
+//     liberar_lista(mi_lista);
+//     printf("\nMemoria liberada con éxito.\n");
+
+//     return 0; 
+// }
+
+
+/* --------------------------------------------------------------------------
+ * FASE 11 (ACTIVA - DÍA 6): Invertir la lista enlazada (invertir_lista)
+ * -------------------------------------------------------------------------- */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Iniciando el reto de Invertir la Lista!\n\n");
+    
+//     struct Nodo *mi_lista = NULL;
+
+//     // 1. Creamos una lista ordenada (10, 20, 30)
+//     mi_lista = insertar_al_final(mi_lista, 10);
+//     mi_lista = insertar_al_final(mi_lista, 20);
+//     mi_lista = insertar_al_final(mi_lista, 30);
+
+//     printf("--- Lista Original (Orden de entrada) ---");
+//     recorrer_lista(mi_lista);
+
+//     // 2. Invertimos la lista
+//     printf("\nInvertiendo los punteros de la lista...\n");
+//     mi_lista = invertir_lista(mi_lista);
+
+//     printf("--- Lista Invertida (Nuevo orden) ---");
+//     recorrer_lista(mi_lista);
+
+//     // Limpieza final de memoria
+//     liberar_lista(mi_lista);
+//     printf("\nMemoria liberada con éxito.\n");
+
+//     return 0; 
+// }
+
+
+/* --------------------------------------------------------------------------
+ * FASE 12 (ACTIVA - DÍA 6): Introducción a Listas Doblemente Enlazadas
+ * -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
 #include "../encabezados/lista_enlazada.h" 
 
 int main() {
-    printf("¡Prueba de fuego: Eliminando al frente, al medio y al final!\n\n");
+    printf("¡Iniciando el reto de Listas Doblemente Enlazadas!\n\n");
     
-    struct Nodo *mi_lista = NULL;
+    struct NodoDoble *mi_lista_doble = NULL;
 
-    // 1. Creamos una lista de 5 elementos (10, 20, 30, 40, 50)
-    mi_lista = insertar_al_final(mi_lista, 10);
-    mi_lista = insertar_al_final(mi_lista, 20);
-    mi_lista = insertar_al_final(mi_lista, 30);
-    mi_lista = insertar_al_final(mi_lista, 40);
-    mi_lista = insertar_al_final(mi_lista, 50);
+    // Insertamos elementos usando inserción al inicio (doble enlace)
+    mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 300);
+    mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 200);
+    mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 100);
 
-    printf("--- Lista Inicial (5 elementos) ---");
-    recorrer_lista(mi_lista);
+    // Recorremos hacia adelante y hacia atrás para comprobar los enlaces dobles
+    recorrer_lista_doble(mi_lista_doble);
 
-    // 2. Eliminamos uno del FRENTE (el 10) -> Caso especial (cambia la cabeza)
-    printf("\n[Cirugía 1] Eliminando el nodo del frente (10)...\n");
-    mi_lista = eliminar_nodo(mi_lista, 10);
-    recorrer_lista(mi_lista);
-
-    // 3. Eliminamos uno del MEDIO (el 30) -> Caso general
-    printf("\n[Cirugía 2] Eliminando el nodo del medio (30)...\n");
-    mi_lista = eliminar_nodo(mi_lista, 30);
-    recorrer_lista(mi_lista);
-
-    // 4. Eliminamos uno del FINAL (el 50) -> Caso general (el último nodo)
-    printf("\n[Cirugía 3] Eliminando el nodo del final (50)...\n");
-    mi_lista = eliminar_nodo(mi_lista, 50);
-    recorrer_lista(mi_lista);
-
-    // Limpieza final de lo que quedó (20 y 40)
-    liberar_lista(mi_lista);
-    printf("\nMemoria liberada con éxito.\n");
+    // Liberación de memoria de la lista doble
+    liberar_lista_doble(mi_lista_doble);
+    printf("\nMemoria de la lista doble liberada con éxito.\n");
 
     return 0; 
 }
