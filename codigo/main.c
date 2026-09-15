@@ -350,24 +350,91 @@
 /* --------------------------------------------------------------------------
  * FASE 12 (ACTIVA - DÍA 6): Introducción a Listas Doblemente Enlazadas
  * -------------------------------------------------------------------------- */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Iniciando el reto de Listas Doblemente Enlazadas!\n\n");
+    
+//     struct NodoDoble *mi_lista_doble = NULL;
+
+//     // Insertamos elementos usando inserción al inicio (doble enlace)
+//     mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 300);
+//     mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 200);
+//     mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 100);
+
+//     // Recorremos hacia adelante y hacia atrás para comprobar los enlaces dobles
+//     recorrer_lista_doble(mi_lista_doble);
+
+//     // Liberación de memoria de la lista doble
+//     liberar_lista_doble(mi_lista_doble);
+//     printf("\nMemoria de la lista doble liberada con éxito.\n");
+
+//     return 0; 
+// }
+
+
+/* --------------------------------------------------------------------------
+ * FASE 13 (ACTIVA - DÍA 7): Inserción al final en Lista Doblemente Enlazada
+ * -------------------------------------------------------------------------- */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Iniciando el Día 7: Inserción al final en Lista Doble!\n\n");
+    
+//     struct NodoDoble *mi_lista_doble = NULL;
+
+//     // Insertamos al final (10, 20, 30) - Orden cronológico FIFO
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 10);
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 20);
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 30);
+
+//     // Recorremos hacia adelante y hacia atrás para comprobar los enlaces dobles
+//     recorrer_lista_doble(mi_lista_doble);
+
+//     // Liberación de memoria de la lista doble
+//     liberar_lista_doble(mi_lista_doble);
+//     printf("\nMemoria de la lista doble liberada con éxito.\n");
+
+//     return 0; 
+// }
+
+
+/* --------------------------------------------------------------------------
+ * FASE 14 (ACTIVA - DÍA 7): Cirugía múltiple en Lista Doblemente Enlazada
+ * -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
 #include "../encabezados/lista_enlazada.h" 
 
 int main() {
-    printf("¡Iniciando el reto de Listas Doblemente Enlazadas!\n\n");
+    printf("¡Iniciando la Prueba de Cirugía Múltiple en Lista Doble!\n\n");
     
     struct NodoDoble *mi_lista_doble = NULL;
 
-    // Insertamos elementos usando inserción al inicio (doble enlace)
-    mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 300);
-    mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 200);
-    mi_lista_doble = insertar_inicio_doble(mi_lista_doble, 100);
+    // 1. Insertamos cuatro elementos (10, 20, 30, 40)
+    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 10);
+    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 20);
+    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 30);
+    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 40);
 
-    // Recorremos hacia adelante y hacia atrás para comprobar los enlaces dobles
+    printf("--- Estado Inicial (4 elementos) ---");
     recorrer_lista_doble(mi_lista_doble);
 
-    // Liberación de memoria de la lista doble
+    // 2. Cirugía 1: Eliminamos un nodo del FRENTE (el 10) -> Cambia la cabeza
+    printf("\n[Cirugía 1] Eliminando el nodo del frente (10)...\n");
+    mi_lista_doble = eliminar_nodo_doble(mi_lista_doble, 10);
+    recorrer_lista_doble(mi_lista_doble);
+
+    // 3. Cirugía 2: Eliminamos un nodo del MEDIO (el 30) -> Caso general
+    printf("\n[Cirugía 2] Eliminando el nodo del medio (30)...\n");
+    mi_lista_doble = eliminar_nodo_doble(mi_lista_doble, 30);
+    recorrer_lista_doble(mi_lista_doble);
+
+    // 4. Liberación de memoria final de lo que quedó (20 y 40)
     liberar_lista_doble(mi_lista_doble);
     printf("\nMemoria de la lista doble liberada con éxito.\n");
 

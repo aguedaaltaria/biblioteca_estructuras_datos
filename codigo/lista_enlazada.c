@@ -222,3 +222,85 @@ void liberar_lista_doble(struct NodoDoble *cabeza) {
         actual = siguiente_temporal;
     }
 }
+
+// Función para insertar un nodo al final de una lista doble (Comportamiento Cola / FIFO)
+struct NodoDoble* insertar_al_final_doble(struct NodoDoble *cabeza, int nuevo_valor) {
+    struct NodoDoble *nuevo_nodo = crear_nodo_doble(nuevo_valor);
+    if (nuevo_nodo == NULL) {
+        return cabeza;
+    }
+
+    // CASO 1: Si la lista está vacía, el nuevo nodo es la cabeza
+    if (cabeza == NULL) {
+        return nuevo_nodo;
+    }
+
+    // CASO 2: Recorremos hasta encontrar el último nodo
+    struct NodoDoble *actual = cabeza;
+    while (actual->siguiente != NULL) {
+        actual = actual->siguiente;
+    }
+
+    // Conectamos el último nodo con el nuevo nodo en ambas direcciones
+    actual->siguiente = nuevo_nodo;
+    nuevo_nodo->anterior = actual;
+
+    return cabeza;
+}
+
+
+// Función para eliminar un nodo específico por su valor en una lista doble
+struct NodoDoble* eliminar_nodo_doble(struct NodoDoble *cabeza, int valor_a_eliminar) {
+    if (cabeza == NULL) {
+        return NULL;
+    }
+
+    struct NodoDoble *actual = cabeza;
+
+    // Buscamos el nodo que contiene el valor a eliminar
+    while (actual != NULL && actual->dato != valor_a_eliminar) {
+        actual = actual->siguiente;
+    }
+
+    // Si no se encontró el valor en la lista, devolvemos la cabeza intacta
+    if (actual == NULL) {
+        return cabeza;
+    }
+
+    // CASO 1: El nodo a eliminar es la cabeza (el primero)
+    if (actual == cabeza) {
+        cabeza = actual->siguiente; // La nueva cabeza es el siguiente nodo
+        if (cabeza != NULL) {
+            cabeza->anterior = NULL; // Desvinculamos el nuevo inicio hacia atrás
+        }
+        free(actual);
+        return cabeza;
+    }
+
+    // CASO 2: El nodo está en el medio o al final
+    // Reconectamos el nodo anterior con el nodo siguiente
+    if (actual->siguiente != NULL) {
+        actual->siguiente->anterior = actual->anterior;
+    }
+
+    if (actual->anterior != NULL) {
+        actual->anterior->siguiente = actual->siguiente;
+    }
+
+    // Demolemos el nodo objetivo con total seguridad
+    free(actual);
+    return cabeza;
+}
+
+// Función para contar nodos en una lista doble
+int obtener_longitud_doble(struct NodoDoble *cabeza) {
+    int contador = 0;
+    struct NodoDoble *actual = cabeza;
+
+    while (actual != NULL) {
+        contador++;
+        actual = actual->siguiente; // Avanzamos igual que en la lista simple
+    }
+
+    return contador;
+}

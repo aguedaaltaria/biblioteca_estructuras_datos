@@ -34,5 +34,8 @@ struct NodoDoble* crear_nodo_doble(int valor_inicial);
 struct NodoDoble* insertar_inicio_doble(struct NodoDoble *cabeza, int nuevo_valor);
 void recorrer_lista_doble(struct NodoDoble *cabeza);
 void liberar_lista_doble(struct NodoDoble *cabeza);
+struct NodoDoble* insertar_al_final_doble(struct NodoDoble *cabeza, int nuevo_valor);
+struct NodoDoble* eliminar_nodo_doble(struct NodoDoble *cabeza, int valor_a_eliminar);
+int obtener_longitud_doble(struct NodoDoble *cabeza);
 
 #endif
