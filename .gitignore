@@ -1,1 +1,9 @@
+# Archivo ejecutable principal de compilación
 programa_main
+
+# Archivos de mapas estructurales temporales o de texto plano
+dot/*.dot
+
+# Imágenes renderizadas de los árboles
+imagenes/*.png
+imagenes/*.svg

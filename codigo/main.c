@@ -406,37 +406,146 @@
 /* --------------------------------------------------------------------------
  * FASE 14 (ACTIVA - DÍA 7): Cirugía múltiple en Lista Doblemente Enlazada
  * -------------------------------------------------------------------------- */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/lista_enlazada.h" 
+
+// int main() {
+//     printf("¡Iniciando la Prueba de Cirugía Múltiple en Lista Doble!\n\n");
+    
+//     struct NodoDoble *mi_lista_doble = NULL;
+
+//     // 1. Insertamos cuatro elementos (10, 20, 30, 40)
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 10);
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 20);
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 30);
+//     mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 40);
+
+//     printf("--- Estado Inicial (4 elementos) ---");
+//     recorrer_lista_doble(mi_lista_doble);
+
+//     // 2. Cirugía 1: Eliminamos un nodo del FRENTE (el 10) -> Cambia la cabeza
+//     printf("\n[Cirugía 1] Eliminando el nodo del frente (10)...\n");
+//     mi_lista_doble = eliminar_nodo_doble(mi_lista_doble, 10);
+//     recorrer_lista_doble(mi_lista_doble);
+
+//     // 3. Cirugía 2: Eliminamos un nodo del MEDIO (el 30) -> Caso general
+//     printf("\n[Cirugía 2] Eliminando el nodo del medio (30)...\n");
+//     mi_lista_doble = eliminar_nodo_doble(mi_lista_doble, 30);
+//     recorrer_lista_doble(mi_lista_doble);
+
+//     // 4. Liberación de memoria final de lo que quedó (20 y 40)
+//     liberar_lista_doble(mi_lista_doble);
+//     printf("\nMemoria de la lista doble liberada con éxito.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 15 (ACTIVA - DÍA 8): Árboles Binarios de Búsqueda (BST) y Archivo DOT
+ * NOTA DE DISEÑO: Este árbol NO se auto-balancea automáticamente. Dependiendo 
+ * del orden de inserción, puede inclinarse o desbalancearse (degenerarse).
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando el Día 8: Árboles Binarios y formato DOT!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos números desordenados (La raíz será 50)
+//     raiz = insertar_en_arbol(raiz, 50);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 70);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 40);
+
+//     printf("--- Recorriendo el Árbol In-order (Ordenado de menor a mayor) ---\n");
+//     recorrer_in_order(raiz);
+
+//     // Exportamos a DOT y generamos la imagen png en la carpeta imagenes/
+//     exportar_a_dot(raiz, "dot/arbol_fase15.dot", "imagenes/arbol_fase15.png");
+
+//     // Liberación de memoria con Post-order interno
+//     liberar_arbol(raiz);
+//     printf("\nMemoria del árbol liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 16 (ACTIVA - DÍA 8): Demostración de Árbol Desbalanceado (Degenerado)
+ * Inserción secuencial (10, 20, 30, 40, 50) para observar la pérdida de forma.
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 16: El Árbol Desbalanceado!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos números en orden ascendente
+//     raiz = insertar_en_arbol(raiz, 10);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 40);
+//     raiz = insertar_en_arbol(raiz, 50);
+
+//     printf("--- Recorriendo el Árbol Desbalanceado In-order ---\n");
+//     recorrer_in_order(raiz);
+
+//     // Exportamos el mapa a DOT y generamos la imagen para ver el desbalance
+//     exportar_a_dot(raiz, "dot/arbol_fase16.dot", "imagenes/arbol_fase16.png");
+
+//     // Liberación de memoria segura
+//     liberar_arbol(raiz);
+//     printf("\nMemoria del árbol desbalanceado liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 17 (ACTIVA - DÍA 8): Comparativa de los 3 Recorridos Clásicos (BST)
+ * In-order, Pre-order y Post-order sobre un árbol balanceado.
+ * ========================================================================== */
 #include <stdio.h>
 #include <stdlib.h>
-#include "../encabezados/lista_enlazada.h" 
+#include "../encabezados/arboles.h" 
 
 int main() {
-    printf("¡Iniciando la Prueba de Cirugía Múltiple en Lista Doble!\n\n");
+    printf("¡Iniciando la Fase 17: Los Tres Recorridos del Árbol!\n\n");
     
-    struct NodoDoble *mi_lista_doble = NULL;
+    struct NodoArbolBinario *raiz = NULL;
 
-    // 1. Insertamos cuatro elementos (10, 20, 30, 40)
-    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 10);
-    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 20);
-    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 30);
-    mi_lista_doble = insertar_al_final_doble(mi_lista_doble, 40);
+    // Sembramos el árbol simétrico base (Raíz 50)
+    raiz = insertar_en_arbol(raiz, 50);
+    raiz = insertar_en_arbol(raiz, 30);
+    raiz = insertar_en_arbol(raiz, 70);
+    raiz = insertar_en_arbol(raiz, 20);
+    raiz = insertar_en_arbol(raiz, 40);
 
-    printf("--- Estado Inicial (4 elementos) ---");
-    recorrer_lista_doble(mi_lista_doble);
+    printf("1. --- Recorrido In-order (Izquierda -> Raíz -> Derecha) ---\n");
+    recorrer_in_order(raiz); // Debe salir ordenado: 20, 30, 40, 50, 70
 
-    // 2. Cirugía 1: Eliminamos un nodo del FRENTE (el 10) -> Cambia la cabeza
-    printf("\n[Cirugía 1] Eliminando el nodo del frente (10)...\n");
-    mi_lista_doble = eliminar_nodo_doble(mi_lista_doble, 10);
-    recorrer_lista_doble(mi_lista_doble);
+    printf("\n2. --- Recorrido Pre-order (Raíz -> Izquierda -> Derecha) ---\n");
+    recorrer_pre_order(raiz); // La raíz (50) sale de primera
 
-    // 3. Cirugía 2: Eliminamos un nodo del MEDIO (el 30) -> Caso general
-    printf("\n[Cirugía 2] Eliminando el nodo del medio (30)...\n");
-    mi_lista_doble = eliminar_nodo_doble(mi_lista_doble, 30);
-    recorrer_lista_doble(mi_lista_doble);
+    printf("\n3. --- Recorrido Post-order (Izquierda -> Derecha -> Raíz) ---\n");
+    recorrer_post_order(raiz); // La raíz (50) sale de última
 
-    // 4. Liberación de memoria final de lo que quedó (20 y 40)
-    liberar_lista_doble(mi_lista_doble);
-    printf("\nMemoria de la lista doble liberada con éxito.\n");
+    // Exportamos a DOT para tener el registro visual
+    exportar_a_dot(raiz, "dot/arbol_fase17.dot", "imagenes/arbol_fase17.png");
+
+    // Liberación de memoria con Post-order interno
+    liberar_arbol(raiz);
+    printf("\nMemoria liberada con éxito sin fugas.\n");
 
     return 0; 
 }
