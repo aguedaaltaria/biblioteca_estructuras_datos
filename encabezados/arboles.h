@@ -6,6 +6,7 @@ struct NodoArbolBinario {
     int dato;
     struct NodoArbolBinario *izquierda;
     struct NodoArbolBinario *derecha;
+    int altura; // <-- Nuevo campo para AVL
 };
 
 // --- FÁBRICA Y GESTIÓN ---
@@ -20,5 +21,16 @@ void recorrer_post_order(struct NodoArbolBinario *raiz); // Izquierda -> Derecha
 
 // void generar_grafo_arbol(struct NodoArbolBinario *raiz, const char *nombre_archivo);
 void exportar_a_dot(struct NodoArbolBinario *raiz, const char *nombre_archivo_dot, const char *nombre_imagen_png);
+
+// --- BÚSQUEDA Y ELIMINACIÓN ---
+struct NodoArbolBinario* buscar_en_arbol(struct NodoArbolBinario *raiz, int valor);
+struct NodoArbolBinario* eliminar_nodo_arbol(struct NodoArbolBinario *raiz, int valor);
+
+// --- MÉTRICAS ESTRUCTURALES ---
+int altura_arbol(struct NodoArbolBinario *raiz);
+int contar_nodos(struct NodoArbolBinario *raiz);
+
+// --- ÁRBOL AVL ---
+struct NodoArbolBinario* insertar_avl(struct NodoArbolBinario *raiz, int valor);
 
 #endif

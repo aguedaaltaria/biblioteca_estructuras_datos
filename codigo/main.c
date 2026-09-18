@@ -515,37 +515,233 @@
  * FASE 17 (ACTIVA - DÍA 8): Comparativa de los 3 Recorridos Clásicos (BST)
  * In-order, Pre-order y Post-order sobre un árbol balanceado.
  * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 17: Los Tres Recorridos del Árbol!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos el árbol simétrico base (Raíz 50)
+//     raiz = insertar_en_arbol(raiz, 50);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 70);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 40);
+
+//     printf("1. --- Recorrido In-order (Izquierda -> Raíz -> Derecha) ---\n");
+//     recorrer_in_order(raiz); // Debe salir ordenado: 20, 30, 40, 50, 70
+
+//     printf("\n2. --- Recorrido Pre-order (Raíz -> Izquierda -> Derecha) ---\n");
+//     recorrer_pre_order(raiz); // La raíz (50) sale de primera
+
+//     printf("\n3. --- Recorrido Post-order (Izquierda -> Derecha -> Raíz) ---\n");
+//     recorrer_post_order(raiz); // La raíz (50) sale de última
+
+//     // Exportamos a DOT para tener el registro visual
+//     exportar_a_dot(raiz, "dot/arbol_fase17.dot", "imagenes/arbol_fase17.png");
+
+//     // Liberación de memoria con Post-order interno
+//     liberar_arbol(raiz);
+//     printf("\nMemoria liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 18 (ACTIVA - DÍA 9): Búsqueda en BST
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 18: Búsqueda en BST!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos árbol base: 50, 30, 70, 20, 40
+//     raiz = insertar_en_arbol(raiz, 50);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 70);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 40);
+
+//     exportar_a_dot(raiz, "dot/arbol_fase18.dot", "imagenes/arbol_fase18.png");
+
+//     // Prueba 1: Buscar elemento existente
+//     int buscar_val = 40;
+//     struct NodoArbolBinario *encontrado = buscar_en_arbol(raiz, buscar_val);
+//     if (encontrado != NULL) {
+//         printf("✅ Dato %d encontrado en el árbol.\n", encontrado->dato);
+//     } else {
+//         printf("❌ Dato %d no encontrado.\n", buscar_val);
+//     }
+
+//     // Prueba 2: Buscar elemento inexistente
+//     int no_existe = 99;
+//     struct NodoArbolBinario *no_encontrado = buscar_en_arbol(raiz, no_existe);
+//     if (no_encontrado == NULL) {
+//         printf("❌ Dato %d correctamente no encontrado (prueba negativa exitosa).\n", no_existe);
+//     }
+
+//     // Liberación total
+//     liberar_arbol(raiz);
+//     printf("\nMemoria liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 19 (ACTIVA - DÍA 9): Eliminación de Nodos en BST
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 19: Eliminación en BST!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos árbol base: 50, 30, 70, 20, 40
+//     raiz = insertar_en_arbol(raiz, 50);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 70);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 40);
+
+//     exportar_a_dot(raiz, "dot/arbol_fase19_antes.dot", "imagenes/arbol_fase19_antes.png");
+
+//     printf("--- Recorrido In-order antes de eliminar ---\n");
+//     recorrer_in_order(raiz);
+
+//     // Eliminamos el 30 (tiene 2 hijos: 20 y 40)
+//     printf("\nEliminando el nodo 30...\n");
+//     raiz = eliminar_nodo_arbol(raiz, 30);
+
+//     printf("--- Recorrido In-order post-eliminación ---\n");
+//     recorrer_in_order(raiz);
+
+//     exportar_a_dot(raiz, "dot/arbol_fase19_despues.dot", "imagenes/arbol_fase19_despues.png");
+
+//     // Liberación total
+//     liberar_arbol(raiz);
+//     printf("\nMemoria liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 20 (ACTIVA - DÍA 9): Métricas de Nodos y Altura (Árbol Simétrico)
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 20: Métricas en Árbol Simétrico!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos árbol base simétrico: 50, 30, 70, 20, 40
+//     raiz = insertar_en_arbol(raiz, 50);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 70);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 40);
+
+//     exportar_a_dot(raiz, "dot/arbol_fase20.dot", "imagenes/arbol_fase20.png");
+
+//     int total_nodos = contar_nodos(raiz);
+//     int altura = altura_arbol(raiz);
+
+//     printf("📊 Total de nodos en el árbol: %d\n", total_nodos);
+//     printf("📏 Altura máxima del árbol: %d\n", altura);
+
+//     liberar_arbol(raiz);
+//     printf("\nMemoria liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 21 (ACTIVA - DÍA 9): Métricas en Árbol Degenerado (Desbalanceado)
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 21: Métricas en Árbol Degenerado!\n\n");
+    
+//     struct NodoArbolBinario *raiz = NULL;
+
+//     // Sembramos secuencia ascendente (degeneración a lista)
+//     raiz = insertar_en_arbol(raiz, 10);
+//     raiz = insertar_en_arbol(raiz, 20);
+//     raiz = insertar_en_arbol(raiz, 30);
+//     raiz = insertar_en_arbol(raiz, 40);
+//     raiz = insertar_en_arbol(raiz, 50);
+
+//     exportar_a_dot(raiz, "dot/arbol_fase21.dot", "imagenes/arbol_fase21.png");
+
+//     int total_nodos = contar_nodos(raiz);
+//     int altura = altura_arbol(raiz);
+
+//     printf("📊 Total de nodos: %d\n", total_nodos);
+//     printf("⚠️ Altura degradada (debería ser menor si estuviera balanceado): %d\n", altura);
+
+//     liberar_arbol(raiz);
+//     printf("\nMemoria liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 22 (ACTIVA - DÍA 9): Contraste BST (Sin balancear) vs AVL (Balanceado)
+ * Entrada: Secuencia estricta 10, 20, 30, 40, 50
+ * ========================================================================== */
 #include <stdio.h>
 #include <stdlib.h>
 #include "../encabezados/arboles.h" 
 
 int main() {
-    printf("¡Iniciando la Fase 17: Los Tres Recorridos del Árbol!\n\n");
+    printf("¡Iniciando la Fase 22: Contraste Visual BST vs AVL!\n\n");
     
-    struct NodoArbolBinario *raiz = NULL;
+    int secuencia[] = {10, 20, 30, 40, 50};
+    int total_elementos = 5;
 
-    // Sembramos el árbol simétrico base (Raíz 50)
-    raiz = insertar_en_arbol(raiz, 50);
-    raiz = insertar_en_arbol(raiz, 30);
-    raiz = insertar_en_arbol(raiz, 70);
-    raiz = insertar_en_arbol(raiz, 20);
-    raiz = insertar_en_arbol(raiz, 40);
+    // --- 1. EL "ANTES": Árbol sin balancear (BST clásico) ---
+    printf("--- [ANTES] Insertando con BST tradicional ---\n");
+    struct NodoArbolBinario *raiz_sin_balancear = NULL;
+    for (int i = 0; i < total_elementos; i++) {
+        raiz_sin_balancear = insertar_en_arbol(raiz_sin_balancear, secuencia[i]);
+    }
+    exportar_a_dot(raiz_sin_balancear, "dot/arbol_fase22_sin_balancear.dot", "imagenes/arbol_fase22_sin_balancear.png");
+    printf("📐 Altura BST sin balancear: %d (columna / lista enlazada)\n", altura_arbol(raiz_sin_balancear));
+    liberar_arbol(raiz_sin_balancear);
 
-    printf("1. --- Recorrido In-order (Izquierda -> Raíz -> Derecha) ---\n");
-    recorrer_in_order(raiz); // Debe salir ordenado: 20, 30, 40, 50, 70
+    printf("\n--------------------------------------------------\n\n");
 
-    printf("\n2. --- Recorrido Pre-order (Raíz -> Izquierda -> Derecha) ---\n");
-    recorrer_pre_order(raiz); // La raíz (50) sale de primera
+    // --- 2. EL "DESPUÉS": Árbol auto-balanceado (AVL) ---
+    printf("--- [DESPUÉS] Insertando con AVL (auto-balanceo con rotaciones) ---\n");
+    struct NodoArbolBinario *raiz_balanceada = NULL;
+    for (int i = 0; i < total_elementos; i++) {
+        raiz_balanceada = insertar_avl(raiz_balanceada, secuencia[i]);
+    }
+    exportar_a_dot(raiz_balanceada, "dot/arbol_fase22_balanceado.dot", "imagenes/arbol_fase22_balanceado.png");
+    printf("✨ Altura AVL balanceada: %d (estructura óptima ramificada)\n", altura_arbol(raiz_balanceada));
+    liberar_arbol(raiz_balanceada);
 
-    printf("\n3. --- Recorrido Post-order (Izquierda -> Derecha -> Raíz) ---\n");
-    recorrer_post_order(raiz); // La raíz (50) sale de última
-
-    // Exportamos a DOT para tener el registro visual
-    exportar_a_dot(raiz, "dot/arbol_fase17.dot", "imagenes/arbol_fase17.png");
-
-    // Liberación de memoria con Post-order interno
-    liberar_arbol(raiz);
-    printf("\nMemoria liberada con éxito sin fugas.\n");
+    printf("\nMemoria de ambos escenarios liberada con éxito sin fugas.\n");
 
     return 0; 
 }
