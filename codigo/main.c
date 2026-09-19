@@ -709,39 +709,182 @@
  * FASE 22 (ACTIVA - DÍA 9): Contraste BST (Sin balancear) vs AVL (Balanceado)
  * Entrada: Secuencia estricta 10, 20, 30, 40, 50
  * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include "../encabezados/arboles.h" 
+
+// int main() {
+//     printf("¡Iniciando la Fase 22: Contraste Visual BST vs AVL!\n\n");
+    
+//     int secuencia[] = {10, 20, 30, 40, 50};
+//     int total_elementos = 5;
+
+//     // --- 1. EL "ANTES": Árbol sin balancear (BST clásico) ---
+//     printf("--- [ANTES] Insertando con BST tradicional ---\n");
+//     struct NodoArbolBinario *raiz_sin_balancear = NULL;
+//     for (int i = 0; i < total_elementos; i++) {
+//         raiz_sin_balancear = insertar_en_arbol(raiz_sin_balancear, secuencia[i]);
+//     }
+//     exportar_a_dot(raiz_sin_balancear, "dot/arbol_fase22_sin_balancear.dot", "imagenes/arbol_fase22_sin_balancear.png");
+//     printf("📐 Altura BST sin balancear: %d (columna / lista enlazada)\n", altura_arbol(raiz_sin_balancear));
+//     liberar_arbol(raiz_sin_balancear);
+
+//     printf("\n--------------------------------------------------\n\n");
+
+//     // --- 2. EL "DESPUÉS": Árbol auto-balanceado (AVL) ---
+//     printf("--- [DESPUÉS] Insertando con AVL (auto-balanceo con rotaciones) ---\n");
+//     struct NodoArbolBinario *raiz_balanceada = NULL;
+//     for (int i = 0; i < total_elementos; i++) {
+//         raiz_balanceada = insertar_avl(raiz_balanceada, secuencia[i]);
+//     }
+//     exportar_a_dot(raiz_balanceada, "dot/arbol_fase22_balanceado.dot", "imagenes/arbol_fase22_balanceado.png");
+//     printf("✨ Altura AVL balanceada: %d (estructura óptima ramificada)\n", altura_arbol(raiz_balanceada));
+//     liberar_arbol(raiz_balanceada);
+
+//     printf("\nMemoria de ambos escenarios liberada con éxito sin fugas.\n");
+
+//     return 0; 
+// }
+
+
+/* ==========================================================================
+ * FASE 23 (DÍA 10): Creación de Tabla Hash e Inserción básica/colisiones
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <stdbool.h>
+// #include "../encabezados/tabla_hash.h"
+
+// int main() {
+//     printf("¡Iniciando Fase 23: Creación e Inserción en Tabla Hash!\n\n");
+
+//     int capacidad_pequena = 5; // Capacidad reducida a propósito para evidenciar encadenamiento
+//     struct TablaHash *tabla = crear_tabla_hash(capacidad_pequena);
+    
+//     if (tabla == NULL) {
+//         printf("Error crítico: no se pudo crear la tabla hash.\n");
+//         return 1;
+//     }
+
+//     // Insertamos pares clave-valor
+//     insertar_en_tabla_hash(tabla, "gilda", 42);
+//     insertar_en_tabla_hash(tabla, "carlos", 88);
+//     insertar_en_tabla_hash(tabla, "beatriz", 100);
+
+//     printf("Inserciones completadas en tabla con capacidad %d.\n", capacidad_pequena);
+//     imprimir_tabla_hash(tabla);
+
+//     // Limpiamos memoria
+//     liberar_tabla_hash(tabla);
+//     printf("Memoria de la tabla liberada sin fugas.\n");
+
+//     return 0;
+// }
+
+
+/* ==========================================================================
+ * FASE 24 (DÍA 10): Pruebas de Búsqueda en Tabla Hash (con colisiones)
+ * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <stdbool.h>
+// #include "../encabezados/tabla_hash.h"
+
+// int main() {
+//     printf("¡Iniciando Fase 24: Pruebas de Búsqueda en Tabla Hash!\n\n");
+
+//     int capacidad = 5;
+//     struct TablaHash *tabla = crear_tabla_hash(capacidad);
+//     if (tabla == NULL) {
+//         printf("Error crítico: no se pudo crear la tabla hash.\n");
+//         return 1;
+//     }
+
+//     // Insertamos datos (creando colisiones en cubeta 3)
+//     insertar_en_tabla_hash(tabla, "gilda", 42);     // Cubeta 3 (fondo)
+//     insertar_en_tabla_hash(tabla, "beatriz", 100);  // Cubeta 3 (cabeza / colisión)
+//     insertar_en_tabla_hash(tabla, "carlos", 88);    // Cubeta 4
+
+//     imprimir_tabla_hash(tabla);
+
+//     bool encontrado = false;
+//     int valor_encontrado = 0;
+
+//     // --- Caso 1: Buscar elemento al frente de la cadena colisionada ("beatriz") ---
+//     valor_encontrado = buscar_en_tabla_hash(tabla, "beatriz", &encontrado);
+//     if (encontrado) {
+//         printf("🔍 [TEST 1] Clave 'beatriz' encontrada -> Valor: %d (¡Correcto!)\n", valor_encontrado);
+//     } else {
+//         printf("❌ [TEST 1] Error: 'beatriz' debió encontrarse.\n");
+//     }
+
+//     // --- Caso 2: Buscar elemento al fondo de la cadena colisionada ("gilda") ---
+//     valor_encontrado = buscar_en_tabla_hash(tabla, "gilda", &encontrado);
+//     if (encontrado) {
+//         printf("🔍 [TEST 2] Clave 'gilda' encontrada -> Valor: %d (¡Correcto! Recorrió la cadena)\n", valor_encontrado);
+//     } else {
+//         printf("❌ [TEST 2] Error: 'gilda' debió encontrarse.\n");
+//     }
+
+//     // --- Caso 3: Buscar clave ausente ("felipe") ---
+//     valor_encontrado = buscar_en_tabla_hash(tabla, "felipe", &encontrado);
+//     if (!encontrado) {
+//         printf("🔍 [TEST 3] Clave 'felipe' no existe en la tabla (¡Correcto!)\n");
+//     } else {
+//         printf("❌ [TEST 3] Error: 'felipe' no debería existir.\n");
+//     }
+
+//     // Limpiamos memoria
+//     liberar_tabla_hash(tabla);
+//     printf("\nMemoria liberada sin fugas tras pruebas de búsqueda.\n");
+
+//     return 0;
+// }
+
+
+/* ==========================================================================
+ * FASE 25 (DÍA 10): Pruebas de Eliminación en Tabla Hash (con colisiones)
+ * ========================================================================== */
 #include <stdio.h>
 #include <stdlib.h>
-#include "../encabezados/arboles.h" 
+#include <stdbool.h>
+#include "../encabezados/tabla_hash.h"
 
 int main() {
-    printf("¡Iniciando la Fase 22: Contraste Visual BST vs AVL!\n\n");
-    
-    int secuencia[] = {10, 20, 30, 40, 50};
-    int total_elementos = 5;
+    printf("¡Iniciando Fase 25: Pruebas de Eliminación en Tabla Hash!\n\n");
 
-    // --- 1. EL "ANTES": Árbol sin balancear (BST clásico) ---
-    printf("--- [ANTES] Insertando con BST tradicional ---\n");
-    struct NodoArbolBinario *raiz_sin_balancear = NULL;
-    for (int i = 0; i < total_elementos; i++) {
-        raiz_sin_balancear = insertar_en_arbol(raiz_sin_balancear, secuencia[i]);
+    int capacidad = 5;
+    struct TablaHash *tabla = crear_tabla_hash(capacidad);
+    if (tabla == NULL) {
+        printf("Error crítico: no se pudo crear la tabla hash.\n");
+        return 1;
     }
-    exportar_a_dot(raiz_sin_balancear, "dot/arbol_fase22_sin_balancear.dot", "imagenes/arbol_fase22_sin_balancear.png");
-    printf("📐 Altura BST sin balancear: %d (columna / lista enlazada)\n", altura_arbol(raiz_sin_balancear));
-    liberar_arbol(raiz_sin_balancear);
 
-    printf("\n--------------------------------------------------\n\n");
+    // Insertamos datos (creando colisiones en cubeta 3)
+    insertar_en_tabla_hash(tabla, "gilda", 42);     // Cubeta 3 (fondo)
+    insertar_en_tabla_hash(tabla, "beatriz", 100);  // Cubeta 3 (cabeza / colisión)
+    insertar_en_tabla_hash(tabla, "carlos", 88);    // Cubeta 4
 
-    // --- 2. EL "DESPUÉS": Árbol auto-balanceado (AVL) ---
-    printf("--- [DESPUÉS] Insertando con AVL (auto-balanceo con rotaciones) ---\n");
-    struct NodoArbolBinario *raiz_balanceada = NULL;
-    for (int i = 0; i < total_elementos; i++) {
-        raiz_balanceada = insertar_avl(raiz_balanceada, secuencia[i]);
-    }
-    exportar_a_dot(raiz_balanceada, "dot/arbol_fase22_balanceado.dot", "imagenes/arbol_fase22_balanceado.png");
-    printf("✨ Altura AVL balanceada: %d (estructura óptima ramificada)\n", altura_arbol(raiz_balanceada));
-    liberar_arbol(raiz_balanceada);
+    printf("--- ESTADO INICIAL ---\n");
+    imprimir_tabla_hash(tabla);
 
-    printf("\nMemoria de ambos escenarios liberada con éxito sin fugas.\n");
+    // --- Caso 1: Eliminar nodo interno/fondo de la cadena ('gilda') ---
+    printf("🗑️ [TEST 1] Eliminando 'gilda' (fondo de la cadena en cubeta 3)...\n");
+    eliminar_de_tabla_hash(tabla, "gilda");
+    imprimir_tabla_hash(tabla);
 
-    return 0; 
+    // --- Caso 2: Eliminar la cabeza de la cadena ('beatriz') ---
+    printf("🗑️ [TEST 2] Eliminando 'beatriz' (cabeza de la cadena en cubeta 3)...\n");
+    eliminar_de_tabla_hash(tabla, "beatriz");
+    imprimir_tabla_hash(tabla);
+
+    // --- Caso 3: Intentar eliminar clave ausente ('felipe') ---
+    printf("🗑️ [TEST 3] Intentando eliminar clave ausente 'felipe'...\n");
+    eliminar_de_tabla_hash(tabla, "felipe");
+
+    // Limpiamos memoria
+    liberar_tabla_hash(tabla);
+    printf("\nMemoria liberada sin fugas tras pruebas de eliminación.\n");
+
+    return 0;
 }
