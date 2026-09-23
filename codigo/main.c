@@ -845,46 +845,112 @@
 /* ==========================================================================
  * FASE 25 (DÍA 10): Pruebas de Eliminación en Tabla Hash (con colisiones)
  * ========================================================================== */
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <stdbool.h>
+// #include "../encabezados/tabla_hash.h"
+
+// int main() {
+//     printf("¡Iniciando Fase 25: Pruebas de Eliminación en Tabla Hash!\n\n");
+
+//     int capacidad = 5;
+//     struct TablaHash *tabla = crear_tabla_hash(capacidad);
+//     if (tabla == NULL) {
+//         printf("Error crítico: no se pudo crear la tabla hash.\n");
+//         return 1;
+//     }
+
+//     // Insertamos datos (creando colisiones en cubeta 3)
+//     insertar_en_tabla_hash(tabla, "gilda", 42);     // Cubeta 3 (fondo)
+//     insertar_en_tabla_hash(tabla, "beatriz", 100);  // Cubeta 3 (cabeza / colisión)
+//     insertar_en_tabla_hash(tabla, "carlos", 88);    // Cubeta 4
+
+//     printf("--- ESTADO INICIAL ---\n");
+//     imprimir_tabla_hash(tabla);
+
+//     // --- Caso 1: Eliminar nodo interno/fondo de la cadena ('gilda') ---
+//     printf("🗑️ [TEST 1] Eliminando 'gilda' (fondo de la cadena en cubeta 3)...\n");
+//     eliminar_de_tabla_hash(tabla, "gilda");
+//     imprimir_tabla_hash(tabla);
+
+//     // --- Caso 2: Eliminar la cabeza de la cadena ('beatriz') ---
+//     printf("🗑️ [TEST 2] Eliminando 'beatriz' (cabeza de la cadena en cubeta 3)...\n");
+//     eliminar_de_tabla_hash(tabla, "beatriz");
+//     imprimir_tabla_hash(tabla);
+
+//     // --- Caso 3: Intentar eliminar clave ausente ('felipe') ---
+//     printf("🗑️ [TEST 3] Intentando eliminar clave ausente 'felipe'...\n");
+//     eliminar_de_tabla_hash(tabla, "felipe");
+
+//     // Limpiamos memoria
+//     liberar_tabla_hash(tabla);
+//     printf("\nMemoria liberada sin fugas tras pruebas de eliminación.\n");
+
+//     return 0;
+// }
+
+
+/* ==========================================================================
+ * FASE 26 (DÍA 11): Pruebas de Min-Heap (Recorrido paso a paso del arreglo)
+ * ========================================================================== */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../encabezados/tabla_hash.h"
+#include "../encabezados/heap.h"
+
+// Función auxiliar para ver exactamente qué hay dentro del arreglo plano
+void imprimir_estado_heap(struct Heap *heap, const char *mensaje) {
+    printf("📍 %s | Tamanio actual: %d/%d\n   Arreglo fisico -> [ ", mensaje, heap->tamanio, heap->capacidad);
+    for (int i = 0; i < heap->tamanio; i++) {
+        printf("índice[%d]=%d ", i, heap->datos[i]);
+    }
+    printf("]\n\n");
+}
 
 int main() {
-    printf("¡Iniciando Fase 25: Pruebas de Eliminación en Tabla Hash!\n\n");
+    printf("¡Iniciando Fase 26: Min-Heap paso a paso!\n\n");
 
-    int capacidad = 5;
-    struct TablaHash *tabla = crear_tabla_hash(capacidad);
-    if (tabla == NULL) {
-        printf("Error crítico: no se pudo crear la tabla hash.\n");
-        return 1;
+    struct Heap *heap = crear_heap(10);
+    if (heap == NULL) return 1;
+
+    // --- PASO 1: Insertar 5 ---
+    // El arreglo esta vacio. Se coloca en índice[0].
+    printf("➕ Insertando valor 5...\n");
+    insertar_en_heap(heap, 5);
+    imprimir_estado_heap(heap, "Estado 1");
+
+    // --- PASO 2: Insertar 3 ---
+    // Se coloca al final (índice=3). Como 3 < 5 (padre), flotan e intercambian: índice[0]=3, índice=5.
+    printf("➕ Insertando valor 3 (menor que el padre 5, debe flotar)...\n");
+    insertar_en_heap(heap, 3);
+    imprimir_estado_heap(heap, "Estado 2");
+
+    // --- PASO 3: Insertar 8 ---
+    // Se coloca al final (índice=8). 8 no es menor que su padre 3. Se queda quieto.
+    printf("➕ Insertando valor 8 (mayor que el padre 3, se queda quieto)...\n");
+    insertar_en_heap(heap, 8);
+    imprimir_estado_heap(heap, "Estado 3");
+
+    // --- PASO 4: Insertar 2 ---
+    // Se coloca al final temporal (índice=2). 
+    // Compara con padre (índice=5) -> 2 < 5, intercambian.
+    // Compara con nuevo padre (índice[0]=3) -> 2 < 3, intercambian y llega a la raiz.
+    printf("➕ Insertando valor 2 (flota hasta la raiz)...\n");
+    insertar_en_heap(heap, 2);
+    imprimir_estado_heap(heap, "Estado 4");
+
+    // --- EXTRACCIÓN 1: Sacar la raíz (mínimo) ---
+    // Raíz actual es 2. Se guarda. El último elemento (5) sube a la raíz y baja hundiéndose.
+    bool exito = false;
+    int minimo_extraido = extraer_min_heap(heap, &exito);
+    if (exito) {
+        printf("🗑️ Extraccion exitosa! Minimo obtenido de la raiz: %d\n\n", minimo_extraido);
     }
+    imprimir_estado_heap(heap, "Estado tras extraer raiz");
 
-    // Insertamos datos (creando colisiones en cubeta 3)
-    insertar_en_tabla_hash(tabla, "gilda", 42);     // Cubeta 3 (fondo)
-    insertar_en_tabla_hash(tabla, "beatriz", 100);  // Cubeta 3 (cabeza / colisión)
-    insertar_en_tabla_hash(tabla, "carlos", 88);    // Cubeta 4
-
-    printf("--- ESTADO INICIAL ---\n");
-    imprimir_tabla_hash(tabla);
-
-    // --- Caso 1: Eliminar nodo interno/fondo de la cadena ('gilda') ---
-    printf("🗑️ [TEST 1] Eliminando 'gilda' (fondo de la cadena en cubeta 3)...\n");
-    eliminar_de_tabla_hash(tabla, "gilda");
-    imprimir_tabla_hash(tabla);
-
-    // --- Caso 2: Eliminar la cabeza de la cadena ('beatriz') ---
-    printf("🗑️ [TEST 2] Eliminando 'beatriz' (cabeza de la cadena en cubeta 3)...\n");
-    eliminar_de_tabla_hash(tabla, "beatriz");
-    imprimir_tabla_hash(tabla);
-
-    // --- Caso 3: Intentar eliminar clave ausente ('felipe') ---
-    printf("🗑️ [TEST 3] Intentando eliminar clave ausente 'felipe'...\n");
-    eliminar_de_tabla_hash(tabla, "felipe");
-
-    // Limpiamos memoria
-    liberar_tabla_hash(tabla);
-    printf("\nMemoria liberada sin fugas tras pruebas de eliminación.\n");
+    // Limpieza de memoria
+    liberar_heap(heap);
+    printf("Memoria liberada sin fugas tras pruebas de Heap.\n");
 
     return 0;
 }
